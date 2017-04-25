@@ -10,7 +10,9 @@ title: asdfmovie
 <script>
     $( document ).ready(function() {
         console.log( "ready!" );
-	$(".smaller-image").addClass("animated bounce");
+	$(".smaller-image").click(function(){
+    		$(".target").effect( "bounce", {times:3}, 300 );
+	});
     });
 </script>
 <div class="blurb">
