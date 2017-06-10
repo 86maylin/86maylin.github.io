@@ -15,6 +15,28 @@ title: asdfmovie
 	});
     });
 </script>
+<?php
+ 
+// grab recaptcha library
+require_once "recaptchalib.php";
+// your secret key
+$secret = "6LcePAATAAAAABjXaTsy7gwcbnbaF5XgJKwjSNwT";
+ 
+// empty response
+$response = null;
+ 
+// check secret key
+$reCaptcha = new ReCaptcha($secret);
+if ($_POST["g-recaptcha-response"]) {
+    $response = $reCaptcha->verifyResponse(
+        $_SERVER["REMOTE_ADDR"],
+        $_POST["g-recaptcha-response"]
+    );
+}
+if ($response != null && $response->success) {
+    echo "Hi , thanks for submitting the form!";
+  } else {
+?>
 <div class="blurb">
 	<h1>asdfmovie series</h1>
 	<img class="smaller-image" src="https://i.ytimg.com/vi/IYnsfV5N2n8/maxresdefault.jpg">
